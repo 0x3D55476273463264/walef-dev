@@ -28,7 +28,7 @@ applyTheme()
 const typed = document.querySelector("#typed")
 const phrases = [
   typed.dataset.text,
-  "nmap -sC -sV alvo → relatórios claros",
+  "Write-ups de CTF e artigos no Medium",
   "AWS · OCI · Linux · Redes",
 ]
 
