@@ -1,77 +1,167 @@
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Walef Xavier · walle1st</title>
+    <meta
+      name="description"
+      content="Walef Xavier (@walle1st) — segurança ofensiva, cloud e write-ups. Portfólio, artigos e certificações."
+    />
+    <meta name="theme-color" content="#07090c" />
+    <meta property="og:title" content="Walef Xavier · walle1st" />
+    <meta
+      property="og:description"
+      content="Segurança ofensiva, cloud e write-ups."
+    />
+    <meta property="og:image" content="./assets/avatar.png" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%2307090c'/><text x='5' y='22' font-family='monospace' font-size='16' font-weight='700' fill='%2339ff88'>&gt;_</text></svg>"
+    />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap"
       rel="stylesheet"
     />
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./style.css" />
-    <title>Walef Xavier - Portfólio</title>
+
+    <script>
+      // aplica o tema antes do primeiro paint para evitar flash
+      try {
+        const saved = localStorage.getItem("theme")
+        const prefersLight = matchMedia("(prefers-color-scheme: light)").matches
+        if (saved === "light" || (!saved && prefersLight)) {
+          document.documentElement.classList.add("light")
+        }
+      } catch (e) {}
+    </script>
   </head>
 
-  <body class="">
-    <div id="container">
-      <div id="avatar">
-        <img src="./assets/avatar.png" alt="Foto do perfil" />
+  <body>
+    <canvas id="matrix" aria-hidden="true"></canvas>
+    <div class="scanlines" aria-hidden="true"></div>
 
-        <p>@walle1st</p>
-      </div>
-      <div id="switch" onclick="toggleMode()">
-        <button></button>
-        <span></span>
-      </div>
+    <main id="container">
+      <section class="terminal">
+        <header class="terminal-bar">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+          <span class="terminal-title">walle1st@kali: ~</span>
 
-      <ul>
-        <li>
-          <a href="https://github.com/dvbliw" target="_blank">Ver meu portfólio</a>
-        </li>
-        <li>
-          <a href="https://medium.com/@walle1st" target="_blank">Write-up e Artigos</a>
-        </li>
-        </li>
-      </ul>
+          <button
+            id="switch"
+            type="button"
+            aria-label="Alternar tema claro/escuro"
+            aria-pressed="false"
+          >
+            <span class="knob"></span>
+          </button>
+        </header>
 
-      <div id="links">
-        <div id="social">
-          <a href="http://github.com/dvbliw" target="_blank">
-            <ion-icon name="logo-github"></ion-icon>
-          </a>
-          <a href="http://instagram.com/walle1st" target="_blank">
-            <ion-icon name="logo-instagram"></ion-icon>
-          </a>
-          <a href="https://www.linkedin.com/in/walefxavier/" target="_blank">
+        <div class="terminal-body">
+          <div id="avatar">
+            <div class="avatar-ring">
+              <img
+                src="./assets/avatar.png"
+                alt="Foto de perfil de Walef Xavier"
+                width="112"
+                height="112"
+              />
+            </div>
+            <div class="identity">
+              <h1>Walef Xavier</h1>
+              <p class="handle">@walle1st</p>
+            </div>
+          </div>
+
+          <p class="prompt">
+            <span class="ps1">┌──(walle1st㉿kali)-[~]</span>
+            <span><span class="ps1">└─$</span> <span class="cmd">whoami</span></span>
+          </p>
+          <p class="output" id="typed" data-text="Pentester · Cloud Security · CTF player"></p>
+
+          <ul class="tags" aria-label="Áreas de atuação">
+            <li>#offsec</li>
+            <li>#cloud</li>
+            <li>#ctf</li>
+            <li>#writeups</li>
+          </ul>
+        </div>
+      </section>
+
+      <nav aria-label="Links principais">
+        <ul class="menu">
+          <li>
+            <a href="https://github.com/dvbliw" target="_blank" rel="noopener">
+              <ion-icon name="code-slash-outline" aria-hidden="true"></ion-icon>
+              <span class="label">
+                <strong>Portfólio</strong>
+                <small>./projetos --github</small>
+              </span>
+              <ion-icon class="arrow" name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+            </a>
+          </li>
+          <li>
+            <a href="https://medium.com/@walle1st" target="_blank" rel="noopener">
+              <ion-icon name="document-text-outline" aria-hidden="true"></ion-icon>
+              <span class="label">
+                <strong>Write-ups e Artigos</strong>
+                <small>cat writeups/*.md</small>
+              </span>
+              <ion-icon class="arrow" name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div id="social">
+        <a href="https://github.com/dvbliw" target="_blank" rel="noopener" aria-label="GitHub">
+          <ion-icon name="logo-github"></ion-icon>
+        </a>
+        <a href="https://www.linkedin.com/in/walefxavier/" target="_blank" rel="noopener" aria-label="LinkedIn">
           <ion-icon name="logo-linkedin"></ion-icon>
-          </a>
-        </div>    
+        </a>
+        <a href="https://instagram.com/walle1st" target="_blank" rel="noopener" aria-label="Instagram">
+          <ion-icon name="logo-instagram"></ion-icon>
+        </a>
+        <a href="https://medium.com/@walle1st" target="_blank" rel="noopener" aria-label="Medium">
+          <ion-icon name="logo-medium"></ion-icon>
+        </a>
       </div>
+
+      <section id="certification" aria-labelledby="cert-title">
+        <h2 id="cert-title"><span class="ps1">$</span> ls ./certificações</h2>
+        <div class="badges">
+          <a
+            href="https://aws.amazon.com/pt/certification/certified-cloud-practitioner"
+            target="_blank"
+            rel="noopener"
+          >
+            <img src="./assets/aws.png" alt="" width="40" height="40" />
+            <span>AWS Cloud Practitioner</span>
+          </a>
+          <a
+            href="https://catalog-education.oracle.com/pls/certview/sharebadge?id=81EC103D9EA67866609C53677FD568E3228480AEBEE1C777ACAB9B3F6C0ABFFD"
+            target="_blank"
+            rel="noopener"
+          >
+            <img src="./assets/oracle.png" alt="" width="40" height="40" />
+            <span>OCI Foundations</span>
+          </a>
+        </div>
+      </section>
 
       <footer>
-
-      <div id="certification">
-        <a href="https://aws.amazon.com/pt/certification/certified-cloud-practitioner" target="_blank">
-            <img src="./assets/aws.png" alt="Certificação AWS Practitioner">
-        </a>
-
-        <a href="https://catalog-education.oracle.com/pls/certview/sharebadge?id=81EC103D9EA67866609C53677FD568E3228480AEBEE1C777ACAB9B3F6C0ABFFD" target="_blank">
-            <img src="./assets/oracle.png" alt="Certificação Oracle Foundations">
-         </a>
-      </div>
-
-      <div id="base">
-          Feito com
-          <ion-icon name="heart-outline"></ion-icon>
-          e 
-          <ion-icon name="cafe-outline"></ion-icon>
-          por <a href="http://github.com/dvbliw" target="_blank">Walef Xavier</a>
-      </div>
+        <span class="ps1">exit 0</span> · feito com
+        <ion-icon name="heart-outline" aria-label="amor"></ion-icon> e
+        <ion-icon name="cafe-outline" aria-label="café"></ion-icon> por
+        <a href="https://github.com/dvbliw" target="_blank" rel="noopener">Walef Xavier</a>
       </footer>
-
-    </div>
+    </main>
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
