@@ -18,8 +18,8 @@ Projeto desenvolvido durante a trilha Discover da [Rocketseat](https://github.co
 <table>
   <tr>
     <td align="center">
-      <a href="http://github.com/dvbliw/">
-        <img src="http://github.com/dvbliw.png" width="100px;" alt="Walef Xavier"/>
+      <a href="https://github.com/0x3D55476273463264">
+        <img src="https://github.com/0x3D55476273463264.png" width="100px;" alt="Walef Xavier"/>
         <br />
         <sub>
           <b>Walef Xavier</b>
@@ -30,7 +30,7 @@ Projeto desenvolvido durante a trilha Discover da [Rocketseat](https://github.co
        <br />
       </td>
     <td align="center">
-      <a href="http://github.com/dvbliw/">
+      <a href="https://github.com/Rocketseat">
         <img src="https://github.com/rocketseat-education.png" width="100px;" alt="Walef Xavier"/>
         <br />
         <sub>
